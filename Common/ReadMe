@@ -8,4 +8,4 @@
 2. 链接器->输入->附加依赖项：添加“log4cxx\win32\Debug\log4cxx.lib”
 
 主函数入口添加代码：
-1. log4cxx::PropertyConfigurator::configure(CReadConfig::GetInstance()->GetCfgItem("LogCxxPropertyName"));
+1. log4cxx::PropertyConfigurator::configure("logcfg.properties");
