@@ -18,7 +18,7 @@ using namespace std;
 int main(int argc, char** argv)
 {
 	// load property of log4cxx
-	log4cxx::PropertyConfigurator::configure(CReadConfig::GetInstance()->GetCfgItem("LogCxxPropertyName"));
+	log4cxx::PropertyConfigurator::configure("logcfg.properties");
 	
 	__LOG_FUNC_START__;
 
