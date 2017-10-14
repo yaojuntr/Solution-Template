@@ -27,6 +27,7 @@ CErrorMsg::CErrorMsg(string strIntlMsgFileDir) : m_strPropertyFileDir(strIntlMsg
 {
 	__LOG_FUNC_START__;
 	InitErrorTemplate();
+	__LOG_FUNC_END__;
 }
 
 CErrorMsg::~CErrorMsg()
