@@ -25,10 +25,5 @@ struct ImageHeader
 	unsigned short	usImgHeight;
 	unsigned short	usImgWidth;
 };
-
-struct DicomInfo
-{
-
-};
  
 #endif
