@@ -22,7 +22,7 @@
 #ifndef __MACRO_NAMES_H__
 #define __MACRO_NAMES_H__
 
-#define NO_ERROR			0
+#define OK  0
 
 // [General]
 #define INVALID_FILE_NAME	102001
