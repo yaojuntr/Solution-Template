@@ -25,6 +25,8 @@ mutex m_oReadConfigLocker;
 */
 CReadConfig::CReadConfig()
 {
+	__LOG_FUNC_START__;
+
 	ifstream oReadCfg("SysCfg.ini", ios::in | ios::binary);
 	if (true == oReadCfg.good())
 	{
@@ -49,12 +51,16 @@ CReadConfig::CReadConfig()
 				m_mapCfgItems.insert(make_pair(vecSplitStr[0], vecSplitStr[1]));
 			}
 		}
+
+		__LOG_DEBUG__(to_string(m_mapCfgItems.size()) + " configuration item(s) loaded");
 	}
 	else
 	{
 		oReadCfg.close();
-		printf("fatal error: SysCfg.ini does not exist.\n");
+		__LOG_ERROR__("fatal error: SysCfg.ini does not exist");
 	}
+
+	__LOG_FUNC_END__;
 }
 
 /*
@@ -97,6 +103,7 @@ string CReadConfig::GetCfgItem(const std::string strCfgItemName)
 	}
 	else
 	{
+		__LOG_ERROR__("fail to locate key value " + strCfgItemName);
 		return string("");
 	}
 }
