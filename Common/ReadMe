@@ -5,7 +5,7 @@
 
 所有依赖此动态库的项目添加：
 1. C/C++->常规->附加包含目录：添加“$(SolutionDir)Common”
-2. 链接器->输入->附加依赖项：添加“log4cxx\win32\Debug\log4cxx.lib”
+2. 链接器->输入->附加依赖项：添加“log4cxx\win32\Debug\log4cxx.lib”和“Common.lib”
 
 主函数入口添加代码：
 1. log4cxx::PropertyConfigurator::configure("logcfg.properties");
