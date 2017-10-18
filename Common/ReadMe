@@ -7,7 +7,7 @@
 1. C/C++->常规->附加包含目录：
     1) $(SolutionDir)Common
 2. 链接器->输入->附加依赖项：
-    1) log4cxx\win32\Debug\log4cxx.lib
+    1) log4cxx\$(Platform)\$(Configuration)\log4cxx.lib
     2) Common.lib
 
 主函数入口添加代码：
