@@ -17,17 +17,20 @@
  *	1: Warning
  *	2: Error
  *	3: Fatal  
- ***********************************************/
+***********************************************/
 
 #ifndef __MACRO_NAMES_H__
 #define __MACRO_NAMES_H__
 
-#define OK  0
+#define OK	0
 
 // [General]
-#define INVALID_FILE_NAME	102001
+#define INVALID_FILE_NAME		102001
 
-#define OPEN_FILE_ERR		102101
-#define READ_FILE_ERR		102102
+#define OPEN_FILE_ERR			102101
+#define READ_FILE_ERR			102102
+
+// [Common]
+#define BUFF_ALLOCATED_SHORT	202001
 
 #endif
