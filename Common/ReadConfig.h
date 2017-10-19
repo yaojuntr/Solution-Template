@@ -21,10 +21,10 @@ class _declspec(dllexport) CReadConfig
 public:
 	// singleton
 	static CReadConfig* GetInstance();
-
+	
 	// get confiuraton item
 	std::string GetCfgItem(const std::string strCfgItemName);
-
+	
 private:
 	// default constructor
 	CReadConfig();
@@ -32,15 +32,14 @@ private:
 	
 	// split string get from .ini into desired items
 	void SplitString(const std::string & strSrc, const std::string & strSpilter, std::vector<std::string> & vecSplitStr);
-
-
+	
 	// singleton pointer
 	static CReadConfig* m_pIns;
-
+	
 	std::string::size_type m_nSubStrIdxStart;
 	std::string::size_type m_nSubStrIdxStop;
 	std::string::size_type m_nSubStrIdxTemp;
-
+	
 	std::map<std::string, std::string> m_mapCfgItems;
 };
 
