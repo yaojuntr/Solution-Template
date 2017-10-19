@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -119,8 +119,8 @@ copy "$(SolutionDir)$(ProjectName)\$(Configuration)\*.dll" "$(SolutionDir)$(Conf
       <AdditionalDependencies>log4cxx\x64\debug\log4cxx.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>move "$(SolutionDir)$(ProjectName)\x64\$(Configuration)\*.lib" "$(SolutionDir)lib"
-move "$(SolutionDir)$(ProjectName)\x64\$(Configuration)\*.dll" "$(SolutionDir)x64\$(Configuration)"</Command>
+      <Command>copy "$(SolutionDir)$(ProjectName)\x64\$(Configuration)\*.lib" "$(SolutionDir)lib"
+copy "$(SolutionDir)$(ProjectName)\x64\$(Configuration)\*.dll" "$(SolutionDir)x64\$(Configuration)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -168,12 +168,13 @@ copy "$(SolutionDir)$(ProjectName)\$(Configuration)\*.dll" "$(SolutionDir)$(Conf
       <AdditionalLibraryDirectories>$(SolutionDir)lib</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>move "$(SolutionDir)$(ProjectName)\x64\$(Configuration)\*.lib" "$(SolutionDir)lib"
-move "$(SolutionDir)$(ProjectName)\x64\$(Configuration)\*.dll" "$(SolutionDir)x64\$(Configuration)"</Command>
+      <Command>copy "$(SolutionDir)$(ProjectName)\x64\$(Configuration)\*.lib" "$(SolutionDir)lib"
+copy "$(SolutionDir)$(ProjectName)\x64\$(Configuration)\*.dll" "$(SolutionDir)x64\$(Configuration)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Constants.h" />
+    <ClInclude Include="DicomRead.h" />
     <ClInclude Include="ErrorMsg.h" />
     <ClInclude Include="Exception.h" />
     <ClInclude Include="HiResTimer.h" />
@@ -183,6 +184,7 @@ move "$(SolutionDir)$(ProjectName)\x64\$(Configuration)\*.dll" "$(SolutionDir)x6
     <ClInclude Include="Structures.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DicomRead.cpp" />
     <ClCompile Include="ErrorMsg.cpp" />
     <ClCompile Include="ReadConfig.cpp" />
   </ItemGroup>
