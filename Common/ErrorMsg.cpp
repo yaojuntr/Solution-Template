@@ -122,7 +122,7 @@ string CErrorMsg::GetMsgString(int nKeyName, std::vector<std::string> vecSpecifi
 		return "OK";
 	}
 
-	if (m_mErrorTemplate.find(m_nKeyValue) == m_mErrorTemplate.end())
+	if (m_mErrorTemplate.find(nKeyName) == m_mErrorTemplate.end())
 	{
 		return "";
 	}
@@ -133,16 +133,16 @@ string CErrorMsg::GetMsgString(int nKeyName, std::vector<std::string> vecSpecifi
 	m_nPosLeftBrace = 0;
 	m_nPosRightBrace = 0;
 	m_nSpecifierIdx = 0;
-	m_nLenTemplate = m_mErrorTemplate[m_nKeyValue].size();
+	m_nLenTemplate = m_mErrorTemplate[nKeyName].size();
 
-	while(vecSpecifierReplacers.size() > m_nSpecifierIdx && (m_nPosLeftBrace = m_mErrorTemplate[m_nKeyValue].find("{", m_nPosCurrentIdx)) != string::npos && (m_nPosRightBrace = m_mErrorTemplate[m_nKeyValue].find("}", m_nPosCurrentIdx)) != string::npos) 
+	while(vecSpecifierReplacers.size() > m_nSpecifierIdx && (m_nPosLeftBrace = m_mErrorTemplate[nKeyName].find("{", m_nPosCurrentIdx)) != string::npos && (m_nPosRightBrace = m_mErrorTemplate[nKeyName].find("}", m_nPosCurrentIdx)) != string::npos) 
 	{
-		strErrorMsg = m_mErrorTemplate[m_nKeyValue].substr(m_nPosCurrentIdx, m_nPosLeftBrace) + vecSpecifierReplacers[m_nSpecifierIdx++];
+		strErrorMsg = m_mErrorTemplate[nKeyName].substr(m_nPosCurrentIdx, m_nPosLeftBrace) + vecSpecifierReplacers[m_nSpecifierIdx++];
 
 		m_nPosCurrentIdx = m_nPosRightBrace + 1;
 	}
 
-	strErrorMsg += m_mErrorTemplate[m_nKeyValue].substr(m_nPosCurrentIdx, m_nLenTemplate);
+	strErrorMsg += m_mErrorTemplate[nKeyName].substr(m_nPosCurrentIdx, m_nLenTemplate);
 
 	return strErrorMsg;
 }
