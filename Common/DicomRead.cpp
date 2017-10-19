@@ -114,7 +114,7 @@ int CDicomRead::GetInfoAndData(std::string strFileName, DicomInfo *pDcmInfo, cha
 	if (OK != m_nProcResult)
 	{
 		::memset(pDcmInfo, 0, sizeof(DicomInfo));
-		__LOG_ERROR__("fail to read dicom image with error code = " + to_string(m_nProcResult));
+		return READ_FILE_ERR;
 	}
 	else
 	{
@@ -1268,7 +1268,9 @@ int CDicomRead::ReadDicom(size_t unBuffLen)
 
 	if (!sf::exists(oFileName))
 	{
-		__LOG_ERROR__("fail to locate file " + oFileName.string());
+		m_vecErrorReplacer.clear();
+		m_vecErrorReplacer.push_back(oFileName.string());
+		__LOG_ERROR__(CErrorMsg::GetInstance()->GetMsgString(INVALID_FILE_NAME, m_vecErrorReplacer));
 		return INVALID_FILE_NAME;
 	}
 
@@ -1276,7 +1278,11 @@ int CDicomRead::ReadDicom(size_t unBuffLen)
 	if (!m_oReadFile.good())
 	{
 		m_oReadFile.close();
-		__LOG_ERROR__("fail to open file " + oFileName.string());
+
+		m_vecErrorReplacer.clear();
+		m_vecErrorReplacer.push_back(oFileName.string());
+		__LOG_ERROR__(CErrorMsg::GetInstance()->GetMsgString(OPEN_FILE_ERR, m_vecErrorReplacer));
+
 		return OPEN_FILE_ERR;
 	}
 
@@ -1284,7 +1290,11 @@ int CDicomRead::ReadDicom(size_t unBuffLen)
 	if (OK != m_nProcResult)
 	{
 		m_oReadFile.close();
-		__LOG_ERROR__("fail to read tags from " + oFileName.string());
+
+		m_vecErrorReplacer.clear();
+		m_vecErrorReplacer.push_back(oFileName.string());
+		__LOG_ERROR__(CErrorMsg::GetInstance()->GetMsgString(READ_FILE_ERR, m_vecErrorReplacer));
+
 		return READ_FILE_ERR;
 	}
 
