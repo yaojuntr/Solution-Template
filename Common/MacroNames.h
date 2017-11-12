@@ -25,10 +25,10 @@
 #define OK	0
 
 // [General]
-#define INVALID_FILE_NAME		102001
+#define INVALID_FILE_NAME		201001
 
-#define OPEN_FILE_ERR			102101
-#define READ_FILE_ERR			102102
+#define OPEN_FILE_ERR			201101
+#define READ_FILE_ERR			201102
 
 // [Common]
 #define BUFF_ALLOCATED_SHORT	202001
