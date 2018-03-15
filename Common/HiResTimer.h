@@ -14,6 +14,8 @@
 
 #include <chrono>
 
+#include "MacroDefination.h"
+
 /* enum for resolution */
 enum ClockResolution
 {
@@ -29,7 +31,7 @@ enum ClockResolution
  * @class	CHiResTimer
  * @brief	high resolution timer Use chrono
 */
-class _declspec(dllexport) CHiResTimer
+class EXPORT_DLL CHiResTimer
 {
 public:
 	/*
@@ -57,8 +59,7 @@ public:
 	
 	/*
 	 * @brief	start the timer
-	 * @param	none
-	 * @return	
+	 * @return	void
 	*/
 	void Start()
 	{
@@ -68,7 +69,6 @@ public:
 	
 	/*
 	 * @brief	stop the timer, calculate the time span.
-	 * @param	none
 	 * @return	time span in uint64_t.
 	*/
 	uint64_t Stop()
@@ -104,7 +104,6 @@ public:
 	
 	/*
 	 * @brief	pause the timer, calculate the time span, add current time span to total calculator, and resume the timer again.
-	 * @param	none
 	 * @return	current time span in uint64_t.
 	*/
 	uint64_t StopStart()
@@ -143,7 +142,6 @@ public:
 	
 	/*
 	 * @brief	return total time span.
-	 * @param	none
 	 * @return	total time span in uint64_t.
 	*/
 	uint64_t TotalElapsed() { return m_nTotalEalpsed; }
