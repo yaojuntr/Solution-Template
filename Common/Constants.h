@@ -12,6 +12,9 @@
 #ifndef _CONSTANTS_H_
 #define _CONSTANTS_H_
 
+// General
+#define INFO_BUFF_LEN	256
+
 // math
 #define PI	3.141592654
  
