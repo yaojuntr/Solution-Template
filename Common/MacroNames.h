@@ -9,8 +9,8 @@
  * @copyright	bqrmtao@gmail.com
  ***********************************************
  * Error id 123456
- *	1 and 2 represent project id
- *	3 represent error level:
+ *	1 represent error level
+ *	2 and 3 represent project id
  *	4, 5 and 6 represent error id
  ***********************************************
  * Error level
@@ -25,12 +25,19 @@
 #define OK	0
 
 // [General]
-#define INVALID_FILE_NAME		201001
+#define INVALID_FILE_NAME		200001
 
-#define OPEN_FILE_ERR			201101
-#define READ_FILE_ERR			201102
+#define OPEN_FILE_ERR			200002
+#define READ_FILE_ERR			200003
+#define EMPTY_SAMPLE_SET		200004
+#define NUM_SAMPLE_UNMATCH		200005
+#define COLLUMN_OF_LABEL		200006
 
 // [Common]
-#define BUFF_ALLOCATED_SHORT	202001
+#define BUFF_ALLOCATED_SHORT	201001
+
+// [LogisticRegression]
+
+// [ExpectationMaximization]
 
 #endif
