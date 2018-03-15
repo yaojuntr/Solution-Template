@@ -11,6 +11,7 @@
 
 #include <fstream>
 #include <mutex>
+#include <string.h>
 
 #include "ErrorMsg.h"
 #include "Logger.h"
@@ -62,7 +63,7 @@ void CErrorMsg::InitErrorTemplate()
 			string strInfo;
 			getline(oReadErrorTemplate, strInfo);
 	
-			memcpy(cKeyStr, strInfo.c_str(), ERROR_KEY_BITS);
+			::memcpy(cKeyStr, strInfo.c_str(), ERROR_KEY_BITS);
 	
 			m_nKeyValue = atoi(cKeyStr);
 			if (m_nKeyValue > 0)
