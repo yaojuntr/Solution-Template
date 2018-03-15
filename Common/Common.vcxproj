@@ -173,17 +173,20 @@ copy "$(SolutionDir)$(ProjectName)\x64\$(Configuration)\*.dll" "$(SolutionDir)x6
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CommonMethod.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="DicomRead.h" />
     <ClInclude Include="ErrorMsg.h" />
     <ClInclude Include="Exception.h" />
     <ClInclude Include="HiResTimer.h" />
     <ClInclude Include="Logger.h" />
+    <ClInclude Include="MacroDefination.h" />
     <ClInclude Include="MacroNames.h" />
     <ClInclude Include="ReadConfig.h" />
     <ClInclude Include="Structures.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CommonMethod.cpp" />
     <ClCompile Include="DicomRead.cpp" />
     <ClCompile Include="ErrorMsg.cpp" />
     <ClCompile Include="ReadConfig.cpp" />
