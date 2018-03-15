@@ -16,29 +16,26 @@
 #include <vector>
 #include <map>
 
-class _declspec(dllexport) CReadConfig
+#include "MacroDefination.h"
+
+class EXPORT_DLL CReadConfig
 {
 public:
 	// singleton
 	static CReadConfig* GetInstance();
 	
-	// get confiuraton item
+	// get configuration item
 	std::string GetCfgItem(const std::string strCfgItemName);
 	
 private:
 	// default constructor
 	CReadConfig();
+
+	// default destructor
 	~CReadConfig();
-	
-	// split string get from .ini into desired items
-	void SplitString(const std::string & strSrc, const std::string & strSpilter, std::vector<std::string> & vecSplitStr);
 	
 	// singleton pointer
 	static CReadConfig* m_pIns;
-	
-	std::string::size_type m_nSubStrIdxStart;
-	std::string::size_type m_nSubStrIdxStop;
-	std::string::size_type m_nSubStrIdxTemp;
 	
 	std::map<std::string, std::string> m_mapCfgItems;
 };
