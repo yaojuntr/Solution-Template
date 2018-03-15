@@ -16,12 +16,13 @@
 #include <string>
 
 #include "Logger.h"
+#include "MacroDefination.h"
  
 /*
  * @class	
  * @brief	
 */
-class _declspec(dllexport) CException
+class EXPORT_DLL CException
 {
 public:
 	CException(int nErrID, std::string strErrMsg);
