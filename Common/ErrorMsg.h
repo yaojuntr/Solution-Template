@@ -26,9 +26,10 @@
 #include <map>
 #include <vector>
 
+#include "MacroDefination.h"
 #include "MacroNames.h"
 
-class _declspec(dllexport) CErrorMsg
+class EXPORT_DLL CErrorMsg
 {
 public:
 	// singleton
