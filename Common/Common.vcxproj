@@ -95,7 +95,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>log4cxx\win32\Debug\log4cxx.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>log4cxx\win32\$(Configuration)\log4cxx.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>copy "$(SolutionDir)$(ProjectName)\$(Configuration)\*.lib" "$(SolutionDir)lib"
@@ -116,7 +116,7 @@ copy "$(SolutionDir)$(ProjectName)\$(Configuration)\*.dll" "$(SolutionDir)$(Conf
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>log4cxx\x64\debug\log4cxx.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>log4cxx\x64\$(Configuration)\log4cxx.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>copy "$(SolutionDir)$(ProjectName)\x64\$(Configuration)\*.lib" "$(SolutionDir)lib"
@@ -139,7 +139,7 @@ copy "$(SolutionDir)$(ProjectName)\x64\$(Configuration)\*.dll" "$(SolutionDir)x6
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>log4cxx\win32\release\log4cxx.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>log4cxx\win32\$(Configuration)\log4cxx.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)lib</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
@@ -164,7 +164,7 @@ copy "$(SolutionDir)$(ProjectName)\$(Configuration)\*.dll" "$(SolutionDir)$(Conf
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>log4cxx\x64\release\log4cxx.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>log4cxx\x64\$(Configuration)\log4cxx.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)lib</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
