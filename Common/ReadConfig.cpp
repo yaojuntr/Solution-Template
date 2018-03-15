@@ -12,8 +12,9 @@
 #include <mutex>
 #include <fstream>
 
-#include "ReadConfig.h"
+#include "CommonMethod.h"
 #include "Logger.h"
+#include "ReadConfig.h"
 
 using namespace std;
 
@@ -106,45 +107,4 @@ string CReadConfig::GetCfgItem(const std::string strCfgItemName)
 		__LOG_ERROR__("fail to locate key value " + strCfgItemName);
 		return string("");
 	}
-}
-
-/*
- * @brief	split string according pointed splitter
- * @param	string to be split
- * @param	splitter
- * @param	sub-string
- * @return	none
-*/
-void CReadConfig::SplitString(const std::string & strSrc, const std::string & strSpilter, std::vector<std::string> & vecSplitStr)
-{
-	m_nSubStrIdxStart = 0;
-	vecSplitStr.clear();
-
-	do
-	{
-		m_nSubStrIdxStop = strSrc.find_first_of(strSpilter, m_nSubStrIdxStart);
-		if (m_nSubStrIdxStop != string::npos)
-		{
-			m_nSubStrIdxTemp = m_nSubStrIdxStop;
-			while (' ' == strSrc[m_nSubStrIdxTemp - 1])
-			{
-				m_nSubStrIdxTemp--;
-			}
-			vecSplitStr.push_back(strSrc.substr(m_nSubStrIdxStart, m_nSubStrIdxTemp - m_nSubStrIdxStart));
-
-			do 
-			{
-				m_nSubStrIdxStart = strSrc.find_first_not_of(strSpilter, ++m_nSubStrIdxStop);
-			} while (string::npos != m_nSubStrIdxStart && ' ' == strSrc[m_nSubStrIdxStart]);
-
-			if (string::npos == m_nSubStrIdxStart)
-			{
-				return;
-			}
-		}
-		else
-		{
-			vecSplitStr.push_back(strSrc.substr(m_nSubStrIdxStart));
-		}
-	} while (m_nSubStrIdxStop != string::npos);
 }
