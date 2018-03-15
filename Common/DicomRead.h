@@ -15,6 +15,9 @@
 #include <fstream>
 #include <map>
 #include <string>
+#include <vector>
+
+#include "MacroDefination.h"
 
 #define STR_BUF_LEN	128
 
@@ -57,7 +60,7 @@ struct DicomInfo
  * @class	CDicomRead
  * @brief	read image data from dicom file
 */
-class _declspec(dllexport) CDicomRead
+class EXPORT_DLL CDicomRead
 {
 public:
 	/*
@@ -200,6 +203,8 @@ private:
 	std::fstream m_oReadFile;
 
 	std::map<std::string, std::string> m_mapDicomDictionary;
+
+	std::vector<std::string> m_vecErrorReplacer;
 };
 
 //#ifdef _cplusplus
