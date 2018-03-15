@@ -58,7 +58,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>log4cxx/win32/debug/log4cxx.lib;opencv/win32/opencv_core320d.lib;opencv/win32/opencv_highgui320d.lib;opencv/win32/opencv_imgproc320d.lib;Common.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>log4cxx/win32/$(Configuration)/log4cxx.lib;opencv/win32/opencv_core320d.lib;opencv/win32/opencv_highgui320d.lib;opencv/win32/opencv_imgproc320d.lib;Common.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
