@@ -9,7 +9,15 @@
  * @copyright	bqrmtao@gmail.com
 ***************************************************/
 
+#if (defined WIN32 || defined _WIN32 || defined _W64 || defined WINCE)
 #include <filesystem>
+namespace sf = std::tr2::sys;
+#else
+#include <experimental/filesystem>
+namespace sf = std::experimental::filesystem;
+#endif
+
+#include <string.h>
 
 #include "DicomRead.h"
 #include "ErrorMsg.h"
@@ -20,7 +28,6 @@
 #define IMPLICIT_VR	0x2D2D
 
 using namespace std;
-namespace sf = std::tr2::sys;
 
 const int AE = 0x4145;
 const int AS = 0x4153;
@@ -155,9 +162,9 @@ T CDicomRead::ConvertStr2Num(size_t unStrLen)
 	ReverseCopy(unStrLen);
 
 	T tVal = 0;
-	for (int nIdx = 0; nIdx < unStrLen; nIdx++)
+	for (size_t unIdx = 0; unIdx < unStrLen; unIdx++)
 	{
-		tVal |= m_czStreamBuff[nIdx];
+		tVal |= m_czStreamBuff[unIdx];
 		tVal << 8;
 	}
 
@@ -186,12 +193,12 @@ void CDicomRead::GetElementLen()
 		{
 			ReadBuf(4);
 			ReverseCopy(4);
-			m_unElementLen = (unsigned int)m_czStreamBuff;
+			m_unElementLen = *((unsigned int*)m_czStreamBuff);
 			return;
 		}
 		m_nVR = IMPLICIT_VR;
 		ReverseCopy(4);
-		m_unElementLen = (unsigned int)m_czStreamBuff;
+		m_unElementLen = *((unsigned int*)m_czStreamBuff);
 		return;
 	case AE:
 	case AS:
@@ -219,7 +226,7 @@ void CDicomRead::GetElementLen()
 		// Explicit vr with 16-bit length
 		::memcpy(m_czStreamBuff, m_czStreamBuff + 2, 2);
 		ReverseCopy(2);
-		m_unElementLen = (unsigned short)m_czStreamBuff;
+		m_unElementLen = *((unsigned short*)m_czStreamBuff);
 		return;
 	default:
 		m_nVR = IMPLICIT_VR;
@@ -291,7 +298,7 @@ std::string CDicomRead::GetHeaderInfo(std::string strTagInfo)
 		{
 			ReadBuf(2);
 			ReverseCopy(2);
-			strTagInfo = Int2Str((unsigned short)m_czStreamBuff, 10, 2);
+			strTagInfo = Int2Str(*((unsigned short*)m_czStreamBuff), 10, 2);
 		}
 		else
 		{
@@ -300,7 +307,7 @@ std::string CDicomRead::GetHeaderInfo(std::string strTagInfo)
 				strTagInfo = "";
 				ReadBuf(2);
 				ReverseCopy(2);
-				strTagInfo += Int2Str((unsigned short)m_czStreamBuff, 10, 2);
+				strTagInfo += Int2Str(*((unsigned short*)m_czStreamBuff), 10, 2);
 			}
 		}
 		break;
@@ -413,12 +420,12 @@ void CDicomRead::InitData()
 	m_isOddIdx = false;
 	m_isInSequence = false;
 
-	memset(&m_oDcmInfo, 0, sizeof(DicomInfo));
+	::memset(&m_oDcmInfo, 0, sizeof(DicomInfo));
 	
-	memset(m_czStreamBuff, 0, STR_BUF_LEN);
-	memset(m_czHeaderBuf, 0, STR_BUF_LEN);
-	memset(m_czTagBuff, 0, STR_BUF_LEN);
-	memset(m_czHexBuff, 0, STR_BUF_LEN);
+	::memset(m_czStreamBuff, 0, STR_BUF_LEN);
+	::memset(m_czHeaderBuf, 0, STR_BUF_LEN);
+	::memset(m_czTagBuff, 0, STR_BUF_LEN);
+	::memset(m_czHexBuff, 0, STR_BUF_LEN);
 
 	m_strTag.resize(STR_BUF_LEN);
 
@@ -1224,7 +1231,7 @@ void CDicomRead::InitDictionary()
 template<typename T>
 std::string CDicomRead::Int2Str(T tInVal, unsigned char ucBase, size_t unStrValLen)
 {
-	memset(m_czHexBuff, '0', unStrValLen);
+	::memset(m_czHexBuff, '0', unStrValLen);
 
 	if (0 == unStrValLen)
 	{
@@ -1358,7 +1365,7 @@ int CDicomRead::ReadImageData(size_t unBuffLen)
 		{
 			for (int nIdx = 0; nIdx < unNumPixels; nIdx++)
 			{
-				m_ucPixelValLower = (unsigned char)(m_pDataPtr);
+				m_ucPixelValLower = *((unsigned char*)m_pDataPtr);
 				m_nPixVal = (int)(m_ucPixelValLower * m_oDcmInfo.fRescaleSlope + m_oDcmInfo.fRescaleIntercept + 0.5);
 
 				if (0 == memcmp("MONOCHROME1", m_oDcmInfo.czPhotoInterpretation, strlen("MONOCHROME1")))
