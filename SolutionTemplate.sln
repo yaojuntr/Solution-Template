@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ProjectTemplate", "ProjectTemplate\ProjectTemplate.vcxproj", "{8AEA129F-3D33-469D-AE57-019BA5FB24A9}"
@@ -18,7 +18,7 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{8AEA129F-3D33-469D-AE57-019BA5FB24A9}.Debug|Win32.ActiveCfg = Debug|Win32
 		{8AEA129F-3D33-469D-AE57-019BA5FB24A9}.Debug|Win32.Build.0 = Debug|Win32
-		{8AEA129F-3D33-469D-AE57-019BA5FB24A9}.Debug|x64.ActiveCfg = Debug|Win32
+		{8AEA129F-3D33-469D-AE57-019BA5FB24A9}.Debug|x64.ActiveCfg = Debug|x64
 		{8AEA129F-3D33-469D-AE57-019BA5FB24A9}.Release|Win32.ActiveCfg = Release|Win32
 		{8AEA129F-3D33-469D-AE57-019BA5FB24A9}.Release|Win32.Build.0 = Release|Win32
 		{8AEA129F-3D33-469D-AE57-019BA5FB24A9}.Release|x64.ActiveCfg = Release|Win32
