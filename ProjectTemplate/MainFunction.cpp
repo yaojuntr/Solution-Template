@@ -9,15 +9,18 @@
  * @copyright	bqrmtao@gmail.com
 ***************************************************/
 
+#include <filesystem>
+
+#include <opencv2/highgui/highgui.hpp>
+#include <opencv2/imgproc/imgproc.hpp>
+
 #include "DicomRead.h"
 #include "ErrorMsg.h"
 #include "Logger.h"
 #include "ReadConfig.h"
 
-#include <opencv2/highgui/highgui.hpp>
-#include <opencv2/imgproc/imgproc.hpp>
-
 using namespace std;
+namespace sf = std::tr2::sys;
 
 #define IMG_BUF_LEN	512 * 512 * 2
 
@@ -29,15 +32,23 @@ int main(int argc, char** argv)
 	__LOG_FUNC_START__;
 
 	// example of logging an error
-	__LOG_DEBUG__(CErrorMsg::GetInstance()->GetMsgString(OK));
+	__LOG_DEBUG__(CErrorMsg::GetInstance()->GetMsgString(STATUS_OK));
 
 	DicomInfo oDcmInfo;
 	char czImgData[IMG_BUF_LEN];
 
-	CDicomRead oReadDicom;
-	int nProcResult = oReadDicom.GetInfoAndData("../CR-MONO1-10-chest", &oDcmInfo, czImgData, IMG_BUF_LEN);
+	string strDcmFilename = sf::path(sf::complete(sf::path("./CareRayCalImgs/"))).string();
+	if (sf::exists(sf::path(strDcmFilename)))
+	{
+		printf("%s not exists\npress any key to exit...\n");
+		getchar();
+		return 0;
+	}
 
-	if (OK == nProcResult)
+	CDicomRead oReadDicom;
+	int nProcResult = oReadDicom.GetInfoAndData(strDcmFilename, &oDcmInfo, czImgData, IMG_BUF_LEN);
+
+	if (STATUS_OK == nProcResult)
 	{
 		cv::Mat oImgMat(oDcmInfo.usImageHeight, oDcmInfo.usImageWidth, CV_16U);
 		memcpy(oImgMat.data, czImgData, oDcmInfo.usImageHeight * oDcmInfo.usImageWidth * oDcmInfo.usPixelDepth / 8);
