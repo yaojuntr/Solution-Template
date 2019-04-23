@@ -1,6 +1,9 @@
 所有依赖此动态库的项目添加：
 1. C/C++->常规->附加包含目录：
-    1) $(SolutionDir)Common
+    1) $(SolutionDir)include
+    2) $(SolutionDir)Common
+2. 链接器->常规->附加库目录：
+    1) $(SolutionDir)lib
 2. 链接器->输入->附加依赖项：
     1) log4cxx\$(Platform)\$(Configuration)\log4cxx.lib
     2) $(PlatformName)/$(Configuration)/Common.lib
