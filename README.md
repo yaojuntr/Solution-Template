@@ -2,6 +2,8 @@
 
 # SolutionTemplate
 
+for more detail, "SolutionTemplate.pdf"
+
 Visual Studio version 2012
 
 include:
